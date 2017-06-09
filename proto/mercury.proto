@@ -9,8 +9,10 @@ message MercuryMultiGetReply {
 message MercuryRequest {
   optional string uri = 1;
   optional string content_type = 2;
-  optional bytes body = 3;
-  optional bytes etag = 4;
+  optional string method = 3;
+  optional sint32 status_code = 4;
+  optional string source = 5;
+  repeated UserField user_fields = 6;
 }
 message MercuryReply {
   enum CachePolicy {
@@ -23,6 +25,10 @@ message MercuryReply {
   optional CachePolicy cache_policy = 3;
   optional sint32 ttl = 4;
   optional bytes etag = 5;
-  optional string content_type = 6;
+  optional bytes content_type = 6;
   optional bytes body = 7;
+}
+message UserField {
+  optional string name = 1;
+  optional bytes value = 2;
 }
